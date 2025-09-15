@@ -1,26 +1,44 @@
-@import "tailwindcss";
+/*
+ * 1. This is the correct way to import Tailwind's styles.
+ * It injects the base styles, component classes, and all the utility classes.
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/*
+ * 2. This sets up basic theme variables for your application.
+ * It's a clean way to manage your primary background and text colors.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --background: #f1f5f9; /* slate-100 */
+  --foreground: #0f172a; /* slate-900 */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #020617; /* slate-950 */
+    --foreground: #f1f5f9; /* slate-100 */
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*
+ * 3. These are your custom component classes. This is a great
+ * way to reuse common sets of utility classes.
+ */
+
+.form-input, .form-select {
+    @apply block w-full px-3 py-2 mt-1 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-slate-900; /* <-- ADDED TEXT COLOR HERE */
+}
+.btn {
+    @apply inline-flex items-center justify-center px-4 py-2 font-semibold text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50;
+}
+
+.btn-secondary {
+     @apply px-4 py-2 font-semibold text-slate-700 bg-slate-200 rounded-md shadow-sm hover:bg-slate-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-400 disabled:opacity-50;
 }
