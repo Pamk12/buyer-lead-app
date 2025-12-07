@@ -72,21 +72,22 @@ export default async function AllBuyersPage({ searchParams }: Props) {
   return (
     <div className="bg-slate-50 min-h-screen">
       <main className="container mx-auto py-10 px-4">
-        <div className="flex flex-wrap justify-between items-center mb-8 gap-4 border-b border-slate-200 pb-5">
-          <div>
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4 border-b border-slate-200 pb-5">
+          <div className="w-full lg:w-auto">
             <h1 className="text-3xl font-bold text-slate-800 tracking-tight">All Buyers</h1>
             <p className="text-sm text-slate-500 mt-1">
               A total of <span className="font-semibold text-slate-700">{totalBuyers}</span> lead(s) found.
             </p>
           </div>
-          <div className="flex items-center space-x-2">
-            {/* --- Go Back Button Added Here --- */}
-            <Link href="/" className="inline-flex items-center gap-x-2 whitespace-nowrap bg-white text-slate-700 px-4 py-2 rounded-md shadow-sm border border-slate-300 hover:bg-slate-50 text-sm font-medium">
+          <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 w-full lg:w-auto">
+            <Link href="/" className="inline-flex items-center justify-center w-full sm:w-auto gap-x-2 whitespace-nowrap bg-white text-slate-700 px-4 py-2 rounded-md shadow-sm border border-slate-300 hover:bg-slate-50 text-sm font-medium">
                 <HomeIcon className="h-5 w-5" />
                 Go Back
             </Link>
+            
             <ImportExportControls isLoggedIn={!!session?.user} where={where} orderBy={orderBy} />
-            <Link href="/buyers/new" className="inline-flex items-center gap-x-2 whitespace-nowrap bg-indigo-600 text-white px-4 py-2 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-sm font-medium">
+            
+            <Link href="/buyers/new" className="inline-flex items-center justify-center w-full sm:w-auto gap-x-2 whitespace-nowrap bg-indigo-600 text-white px-4 py-2 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-sm font-medium">
               <PlusIcon className="h-5 w-5" />
               Add New Buyer
             </Link>
@@ -121,7 +122,6 @@ export default async function AllBuyersPage({ searchParams }: Props) {
   );
 }
 
-// --- SVG Icon Components ---
 function HomeIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" {...props}>
@@ -137,6 +137,7 @@ function PlusIcon(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
 function SearchIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -144,4 +145,3 @@ function SearchIcon(props: React.SVGProps<SVGSVGElement>) {
         </svg>
     );
 }
-
