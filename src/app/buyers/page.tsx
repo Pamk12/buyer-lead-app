@@ -79,15 +79,23 @@ export default async function AllBuyersPage({ searchParams }: Props) {
               A total of <span className="font-semibold text-slate-700">{totalBuyers}</span> lead(s) found.
             </p>
           </div>
-          <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 w-full lg:w-auto">
+          
+          {/* --- UPDATED: Grid layout for mobile (50/50 split), Flex for Desktop --- */}
+          <div className="grid grid-cols-2 sm:flex sm:flex-row items-center gap-2 w-full lg:w-auto">
+            
+            {/* 1. Go Back Button */}
             <Link href="/" className="inline-flex items-center justify-center w-full sm:w-auto gap-x-2 whitespace-nowrap bg-white text-slate-700 px-4 py-2 rounded-md shadow-sm border border-slate-300 hover:bg-slate-50 text-sm font-medium">
                 <HomeIcon className="h-5 w-5" />
                 Go Back
             </Link>
             
-            <ImportExportControls isLoggedIn={!!session?.user} where={where} orderBy={orderBy} />
+            {/* 2. Import/Export Controls (Assumed to fill the grid cell) */}
+            <div className="w-full sm:w-auto">
+                <ImportExportControls isLoggedIn={!!session?.user} where={where} orderBy={orderBy} />
+            </div>
             
-            <Link href="/buyers/new" className="inline-flex items-center justify-center w-full sm:w-auto gap-x-2 whitespace-nowrap bg-indigo-600 text-white px-4 py-2 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-sm font-medium">
+            {/* 3. Add New Buyer (Spans 2 columns on mobile to be full width at bottom) */}
+            <Link href="/buyers/new" className="col-span-2 sm:col-span-1 inline-flex items-center justify-center w-full sm:w-auto gap-x-2 whitespace-nowrap bg-indigo-600 text-white px-4 py-2 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-sm font-medium">
               <PlusIcon className="h-5 w-5" />
               Add New Buyer
             </Link>
@@ -99,6 +107,7 @@ export default async function AllBuyersPage({ searchParams }: Props) {
           <div className="mt-6">
               {buyers.length > 0 ? (
                   <>
+                      {/* Note: The Mobile "Full Name + Dropdown" layout must be implemented inside this component */}
                       <BuyerTable buyers={buyers} />
                       <PaginationControls
                           currentPage={page}
