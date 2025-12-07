@@ -93,16 +93,21 @@ export default async function NewBuyerPage({
 
   return (
     <main className="bg-slate-50 min-h-screen py-8 px-4">
-        <div className="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-lg">
-            <div className="flex justify-between items-center mb-2">
-                <h1 className="text-4xl font-bold text-gray-900">Add New Buyer</h1>
-                 <Link href="/buyers" className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        {/* Adjusted padding: p-6 for mobile, sm:p-8 for tablet/desktop */}
+        <div className="max-w-4xl mx-auto bg-white p-6 sm:p-8 rounded-xl shadow-lg">
+            
+            {/* --- Header Made Responsive --- */}
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                <div>
+                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">Add New Buyer</h1>
+                    <p className="text-lg text-gray-600 mt-1">Enter the details for the new lead.</p>
+                </div>
+                 <Link href="/buyers" className="w-full sm:w-auto inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 whitespace-nowrap">
                     Go Back to Buyers
                 </Link>
             </div>
-            <p className="text-lg text-gray-600 mb-8">Enter the details for the new lead.</p>
             
-            <form action={createBuyer} className="space-y-8">
+            <form action={createBuyer} className="space-y-8 mt-8">
                 {/* --- ACCESSIBLE ERROR MESSAGE --- */}
                 {/* This block will now display rate limit errors and other validation messages. */}
                 {searchParams?.error && (
@@ -137,7 +142,7 @@ export default async function NewBuyerPage({
                         <FormField label="Source" htmlFor="source"><select name="source" id="source" required className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md text-gray-900">{enums.sources.map(s => <option key={s} value={s}>{s}</option>)}</select></FormField>
                         <FormField label="Status" htmlFor="status"><select name="status" id="status" defaultValue={Status.New} className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md text-gray-900">{enums.statuses.map(s => <option key={s} value={s}>{s}</option>)}</select></FormField>
                     </div>
-                     <div className="grid grid-cols-1 gap-6 mt-6">
+                      <div className="grid grid-cols-1 gap-6 mt-6">
                         <FormField label="Notes" htmlFor="notes"><textarea name="notes" id="notes" rows={5} className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-900"></textarea></FormField>
                     </div>
                 </section>
@@ -149,4 +154,3 @@ export default async function NewBuyerPage({
     </main>
   );
 }
-
